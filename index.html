@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ROBO SIST - Soluções modernas em robótica e automação industrial.">
+
+<title>ROBO SIST | Automação e Robótica</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+
+<style>
+body {
+  cursor: none;
+}
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #00f;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, background-color 0.3s;
+  z-index: 9999;
+}
+
+header.scrolled {
+  background: rgba(0,0,0,0.85);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.hero-content,
+.cards .card,
+.sobre p,
+.contato form {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-content.visible,
+.cards .card.visible,
+.sobre p.visible,
+.contato form.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#hero h2 span {
+  border-right: 2px solid #00f;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: url('hero-bg.jpg') center/cover no-repeat;
+  height: 100vh;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,50,0.4);
+  top: 0;
+  left: 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<header>
+  <div class="container header-container">
+    <h1 class="logo">🤖 ROBO SIST</h1>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <button id="themeToggle" title="Alternar tema">🌙</button>
+  </div>
+</header>
+
+<main>
+
+<section id="hero" class="hero">
+  <div class="container hero-content">
+    <h2><span>Automação e Robótica do Futuro</span></h2>
+    <p>Transformamos processos industriais com tecnologia de ponta, eficiência e segurança.</p>
+    <a href="#servicos" class="btn btn-primary">Explorar Serviços</a>
+  </div>
+</section>
+
+<section id="servicos" class="servicos">
+  <div class="container">
+
+    <h2 class="section-title">Nossos Serviços</h2>
+    <p class="section-subtitle">Áreas em que somos especialistas</p>
+
+    <div class="cards">
+      <a href="Serviço1.html" class="card">
+        <h3>Automação e Robótica</h3>
+        <p>Soluções inteligentes e customizadas para processos automatizados de alta performance.</p>
+      </a>
+
+      <a href="Serviço2.html" class="card">
+        <h3>Montagem de Sistemas</h3>
+        <p>Instalação e integração completa de sistemas industriais complexos e seguros.</p>
+      </a>
+
+      <a href="Serviço3.html" class="card">
+        <h3>Manutenção Industrial</h3>
+        <p>Serviços preventivos e corretivos para garantir operação contínua e confiável.</p>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section id="sobre" class="sobre">
+  <div class="container">
+
+    <h2 class="section-title">Sobre Nós</h2>
+
+    <p>Na <strong>ROBO SIST</strong> desenvolvemos soluções de automação e robótica industrial que aumentam a produtividade e reduzem custos operacionais.</p>
+    <p>Nosso foco é qualidade, inovação e segurança para cada projeto.</p>
+    <p>Trabalhamos com tecnologias de ponta e equipes especializadas para entregar resultados reais.</p>
+
+  </div>
+</section>
+
+<section id="contato" class="contato">
+  <div class="container">
+
+    <h2 class="section-title">Contato</h2>
+    <p>Entre em contacto connosco e descubra como podemos transformar seu processo industrial.</p>
+
+    <form action="https://formsubmit.co/catarinaqueiroz78@gmail.com" method="POST">
+      <input type="text" name="nome" placeholder="Nome" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="mensagem" placeholder="Mensagem" required></textarea>
+      <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+    </form>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <p>© 2026 ROBO SIST | Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<script>
+const btn = document.getElementById("themeToggle");
+
+btn.onclick = () => {
+  document.body.classList.toggle("light");
+  btn.textContent = document.body.classList.contains("light") ? "🌙" : "☀️";
+};
+
+const cursor = document.querySelector('.cursor');
+
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.hero-content, .cards .card, .sobre p, .contato form')
+  .forEach(el => observer.observe(el));
+
+const typedText = document.querySelector('#hero h2 span');
+
+let idx = 0;
+const text = typedText.textContent;
+
+typedText.textContent = '';
+
+function type() {
+  if (idx < text.length) {
+    typedText.textContent += text[idx++];
+    setTimeout(type, 100);
+  }
+}
+
+type();
+
+tsParticles.load("hero", {
+  particles: {
+    number: { value: 50 },
+    color: { value: "#ffffff" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: { min: 1, max: 3 } },
+    move: {
+      enable: true,
+      speed: 1,
+      direction: "none",
+      random: true,
+      outModes: "out"
+    }
+  },
+  interactivity: {
+    events: {
+      onhover: { enable: true, mode: "repulse" }
+    }
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero');
+  hero.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
+});
+</script>
+
+</body>
+</html>
